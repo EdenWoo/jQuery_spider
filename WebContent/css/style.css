@@ -1,0 +1,159 @@
+@CHARSET "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	background:#f5f5f5;
+	overflow-x:hidden;
+}
+
+div{
+	/*对所有的DIV标签生效*/
+}
+
+a{
+	color:#ccc;	
+	text-decotation:none;
+}
+
+a:hover,a:active{
+	color:#9E9E9E;
+}
+
+//---------------------------------------------
+/*类样式，*/
+.search{
+	width:450px;
+	margin:0 auto;
+	border:1px solid #000;
+}
+
+/*<h1>Java网络爬虫开发</h1>*/
+.search h1{
+	font-size:24px;
+	color:#2B23A6;
+}
+
+//---------------------------------------------
+/*		<div class="s_box">
+			<!-- <select></select> drop down list -->
+			<select name="">
+				<option value="">小清新</option>
+				<option value="">文艺</option>
+			</select> <input type="button" />
+*/		</div>
+.s_box{
+	width:100%; /*自动继承父容器的属性*/
+	height:30px;
+	margin:0 auto;
+	padding:5px;
+}
+
+。s_box .s_txt{
+	width:190px;
+	height:30px;
+	border:1px solid #ccc;
+	margin-left:50px;
+}
+
+。s_box .btn{
+	width:80px;
+	height:30px;
+	background:#F07B26;
+	border:0;
+	font-size:14px;
+	color:#fff;/*color:#000; 黑色   color:#fff;白色*/
+	border-radius:3px;/*圆角*/
+	cursor:pointer;/*鼠标显示*/
+	
+。s_box .btn:hover{
+	background:#F0AC7A
+}
+
+/*针对id为wrapper设定式样*/
+/*id只能出现一次*/	
+#wrapper{
+	
+}	
+	
+#container{
+	width:900px;
+	magin:0 auto 25px;
+	padding-bottom:10px;/*底部内边距*/
+	position:relative;
+}		
+	
+.grid{
+	width:188px;
+	min-height:100px;
+	padding:15px;
+	background:#fff;
+	margin:8px;
+	font-size:12px;
+	float:left;
+	box-shadow:0 1px 3px rgba(0,0,0,0.4);
+	
+	/*CSS3以后才有的特性*/
+	/*-webkit 所有基于-webkit浏览器的内核的可以使用*/
+	/*-ms 所有基于-Ie浏览器的内核的可以使用*/
+	/*-moz 所有基于-火狐浏览器的内核的可以使用*/
+	/*-transition:top 所有浏览器 */
+	transition:top 1s ease, left 1s ease;
+	
+}	
+
+
+.grid strong{
+	border-bottom:1px solid #ccc;
+	margin:10px 0;
+	display:block;
+	padding:0 0 5px;
+	font-size:18px;
+	
+}
+
+.grid .meta{
+	text-align:right;
+	color:#777;
+	font-style:italic;
+	
+}
+
+img{
+	max-width:100%;
+	background: #ccc;
+	display:block;
+	background:url(../images/loading.gif) no-repeat center;
+}
+
+#gotop{
+	display:none;
+	width:55px;
+	height:55px;
+	right:50px;
+	bottom:50px;
+	position:fixed;
+	cursor:pointer;
+	background:url(../images/backTop1.png) no-repeat;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+}

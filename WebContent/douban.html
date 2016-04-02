@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>网络爬虫</title>
+
+<!--set charset to UTF-8， New in HTML5 -->
+<meta charset="UTF-8">
+
+<!-- SEO -->
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name=description content="This is a page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+<!-- ./ 同级文件夹（可省）    ../上一级文件夹-->
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="./css/jquery.lightbox-0.5.css">
+
+<script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/blocksit.min.js"></script>
+<script type="text/javascript" src="js/jquery.lightbox-0.5.min.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		var pageNum = 0;
+
+		$("#getImgBtn").click(function() {
+			alert("taibanl");
+			loadImages();
+		});
+
+		//回到顶部事件,500毫秒内回到顶部
+		$("#gotop")。click(function(){
+			$("body,html").animate({scrollTop=0},500);
+		});
+		
+		//流式布局
+		function blockImages(){
+			$("#container").BlocksIt({
+				numOfCol:5
+			});
+		}
+		
+		//给下拉列表绑定一个change事件
+		$("#category").change(function(){
+			$("#container").html('');
+			pageNum=0;
+		});
+		
+		//获取图片
+		function loadImages() {
+			var category = $("#category").val();
+			$ajax({
+				url : "data.jsp",
+				type : "post",
+				data : {
+					pageNum : pageNum,
+					category : category
+				},
+				dataType : "Json",
+				success : function(data) {
+					//动态把图片加载
+					for (var i = 0; i < data.length; i++) {
+						var img = '';
+						img+="<div class='grid'><div class='imgholder'> <img class='lazy' ";
+						img+="src='images/pixel.gif' data-original=' ";
+						img+=data[i].shortUrl;
+						img+="' width='175' /></div> <strong>";
+						img+=data[i].title;
+						img+="</strong> <div class='meta'> <a href=' ";
+						img+=data[i].oriUrl;
+						img+="' class='lightbox'>高清无码图 </a> </div></div>";
+						
+						//拼接，连接
+						$("#container").append(img);						
+					}
+					pageNum++;
+					$("a.lightbox").lightbox();
+					//流式布局
+					blockImages();
+					//图片懒加载
+					$("img.lazy").lazyload();
+				}
+
+			});
+		}
+		
+		//给窗口绑定滚动事件
+		$(window).scroll(function(){
+			//当滚动到底部以上50像素的时候，加载新的内容
+			if($(document).heght()-$(this).scrollTop()-$(this).height<50){
+				loadImages();
+			}
+			if($(this).scrollTop()>200){
+				$("#gotop").fadeIn(400);//淡入
+			}else{
+				$("#gotop")。stop().fadeOut(400);//淡出
+			}
+		});
+	});
+	
+</script>
+</head>
+<body>
+	<!-- div container -->
+	<div class="search">
+		<h1>Java网络爬虫开发</h1>
+		<div class="s_box">
+			<!-- <select></select> drop down list -->
+			<select id="category" class="s_txt">
+				<option value="fresh">小清新</option>
+				<option value="art">文艺</option>
+			</select> <input type="button" class="btn" value="OK" id="getImgBtn" />
+		</div>
+
+		<div id="wrapper">
+			<div id="container">
+			<!-- 
+			<div class="grid">
+					<div>
+						<img class="lazy" src="images/pixel.gif"
+							 data-original="http://www3.autoimg.cn/newsdfs/g21/M07/1A/67/620x0_0_autohomecar__wKgFVValcHOAOUtvAAsMaZQTvzc864.jpg"
+						>
+					</div>
+					<strong>坐姿决定攻守</strong>
+					<div class="meta">
+						<a href="" class="lightbox">高清无码图 </a>
+					</div>
+				</div>
+			 -->
+				
+			</div>
+		</div>
+		
+	</div>
+	<div id="gotop">
+			
+	</div>
+</body>
+</html>
